@@ -1,0 +1,12 @@
+npm init
+npm i express
+script node index
+npm i nodemon
+script server nodemon index
+npm i body-parser
+npm i cors
+npm i morgan
+npm i mongoose
+models
+mongoDB connect
+config keys.mongoURI
