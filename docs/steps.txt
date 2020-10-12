@@ -10,3 +10,9 @@ npm i mongoose
 models
 mongoDB connect
 config keys.mongoURI
+add in controller create users
+npm i bcryptjs
+npm i jsonwebtoken
+`Bearer token`
+npm i passport passport-jwt
+passport!!!
