@@ -16,3 +16,4 @@ npm i jsonwebtoken
 `Bearer token`
 npm i passport passport-jwt
 passport!!!
+errorHandler
