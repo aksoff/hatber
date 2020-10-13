@@ -17,3 +17,7 @@ npm i jsonwebtoken
 npm i passport passport-jwt
 passport!!!
 errorHandler
+
+--client--Angular.io--
+npm i -g @angular/cli
+ng new client
