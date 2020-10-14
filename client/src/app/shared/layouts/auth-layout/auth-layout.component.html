@@ -1,7 +1,16 @@
 <mat-toolbar color="primary">
   <span>Hatber</span>
+  <span class="spacer"></span>
+  <span>
+    <button mat-button routerLink="login"> 
+      Вход
+    </button>
+    <button mat-button routerLink="register"> 
+      Регистрация
+    </button>
+  </span>
 </mat-toolbar>
 <!-- Add Content Here -->
-<div class="grid-container">
+<div class="container">
   <router-outlet></router-outlet>
 </div>
