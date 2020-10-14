@@ -1,3 +1,4 @@
+--backend--
 npm init
 npm i express
 script node index
@@ -17,3 +18,10 @@ npm i jsonwebtoken
 npm i passport passport-jwt
 passport!!!
 errorHandler
+npm i concurrently
+
+--client--Angular.io--
+npm i -g @angular/cli
+ng new client
+ng add @angular/material
+proxy.conf.json
