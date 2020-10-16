@@ -19,10 +19,10 @@ module.exports.login = async function (req, res) {
       }, keys.jwt, {expiresIn: keys.tokenExpired})
       res.status(200).json({ token: `Bearer ${token}`})
     } else {
-      res.status(401).json({ message: 'Error password' })
+      res.status(401).json({ message: 'Неверный пароль' })
     }
   } else {
-    res.status(404).json({ message: 'User not found' })
+    res.status(404).json({ message: 'Такой пользователь не найден' })
   }
 }
 
@@ -31,7 +31,7 @@ module.exports.register = async function (req, res) {
 
   if (candidate) {
     // User exist
-    res.status(409).json({ message: 'User email exist' })
+    res.status(409).json({ message: 'Email занят. Попробуйте другой' })
   } else {
     // Create user
     const salt = bcrypt.genSaltSync(10)
