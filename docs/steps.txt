@@ -25,3 +25,6 @@ npm i -g @angular/cli
 ng new client
 ng add @angular/material
 proxy.conf.json
+login page
+register page
+router guard

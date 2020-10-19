@@ -1,17 +1,16 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { FormBuilder, Validators } from '@angular/forms'
-import { Router } from '@angular/router'
+import { ActivatedRoute, Params, Router } from '@angular/router'
 import { Subscription } from 'rxjs'
 import { AuthService } from '../shared/services/auth.service'
 import { MaterialService } from '../shared/services/material.service'
-
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss']
 })
-export class LoginPageComponent implements OnDestroy {
+export class LoginPageComponent implements OnInit, OnDestroy {
   loginForm = this.formBuilder.group({
     email: [null, [Validators.required, Validators.email]],
     password: [null, [Validators.required, Validators.minLength(5)]]
@@ -23,8 +22,19 @@ export class LoginPageComponent implements OnDestroy {
     private formBuilder: FormBuilder,
     private auth: AuthService,
     private router: Router,
+    private route: ActivatedRoute,
     private materialService: MaterialService
   ) {}
+
+  ngOnInit() {
+    this.route.queryParams.subscribe((params: Params) => {
+      if (params['registered']) {
+        // Теперь Вы можете зайти в систему? используя свои данные
+      } else if (params['accessDenied']) {
+        // Сначала необходимо авторизоваться
+      }
+    })
+  }
 
   ngOnDestroy() {
     if (this.aSub) {
@@ -40,7 +50,7 @@ export class LoginPageComponent implements OnDestroy {
     }
     this.aSub = this.auth.login(user).subscribe(
       () => {
-        console.log('success')
+        console.log('login success')
         this.router.navigate(['/overview'])
         this.loginForm.enable()
       },

@@ -46,10 +46,15 @@
                     'requiredLength'
                   ]
                 "
-                >
-                Пароль должен быть больше {{loginForm.get('password').errors['minlength']['requiredLength']}} символов
-                </span
               >
+                Пароль должен быть больше
+                {{
+                  loginForm.get('password').errors['minlength'][
+                    'requiredLength'
+                  ]
+                }}
+                символов
+              </span>
             </mat-error>
           </mat-form-field>
         </div>
@@ -60,7 +65,7 @@
         mat-raised-button
         color="primary"
         type="submit"
-        [disabled]="loginForm.invalid"
+        [disabled]="loginForm.invalid || loginForm.disabled"
       >
         Войти
       </button>
