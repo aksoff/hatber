@@ -27,7 +27,14 @@
       </button>
       <span>hatber</span>
       <span class="spacer"></span>
-      <button mat-button (click)="logout()">Выход</button>
+      <button mat-icon-button>
+        <mat-icon [matMenuTriggerFor]="menu" aria-label="Logout"
+          >logout</mat-icon
+        >
+      </button>
+      <mat-menu #menu="matMenu">
+        <button (click)="logout()" mat-menu-item>Выйти из системы</button>
+      </mat-menu>
     </mat-toolbar>
     <!-- Add Content Here -->
     <router-outlet></router-outlet>
