@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { Subscription } from 'rxjs'
 import { AuthService } from '../shared/services/auth.service'
+import { MaterialService } from '../shared/services/material.service'
 
 @Component({
   selector: 'app-register-page',
@@ -22,7 +23,8 @@ export class RegisterPageComponent implements OnDestroy {
   constructor(
     private formBuilder: FormBuilder,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private materialService: MaterialService
   ) {}
 
   ngOnDestroy() {
@@ -41,7 +43,7 @@ export class RegisterPageComponent implements OnDestroy {
         })
       },
       (error) => {
-        console.warn(error)
+        this.materialService.openSnackBar(error.error.message)
         this.registerForm.enable()
       }
     )
