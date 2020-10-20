@@ -16,7 +16,7 @@ export class AuthService {
       tap(({ token }) => {
         localStorage.setItem('auth-token', token)
         this.setToken(token)
-        console.log(token)
+        console.log(token, '-login')
       })
     )
   }
@@ -30,11 +30,16 @@ export class AuthService {
   }
 
   getToken(): string {
-    return this.token
+    console.log(localStorage.getItem('auth-token'), ' -getToken')
+    return localStorage.getItem('auth-token')
+    //return this.token
   }
 
   isAuthenticated(): boolean {
-    return !!this.token
+    console.log(!!this.token, ' isAuth..')
+
+    //return !!this.token
+    return !!localStorage.getItem('auth-token')
   }
 
   logout() {
