@@ -28,3 +28,5 @@ proxy.conf.json
 login page
 register page
 router guard
+token interceptors
+app.component
