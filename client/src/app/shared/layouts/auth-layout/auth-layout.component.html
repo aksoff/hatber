@@ -2,10 +2,10 @@
   <span>Hatber</span>
   <span class="spacer"></span>
   <span>
-    <button mat-button routerLink="login"> 
+    <button mat-button [routerLinkActive]="['active']" routerLink="login">
       Вход
     </button>
-    <button mat-button routerLink="register"> 
+    <button mat-button [routerLinkActive]="['active']" routerLink="register">
       Регистрация
     </button>
   </span>
