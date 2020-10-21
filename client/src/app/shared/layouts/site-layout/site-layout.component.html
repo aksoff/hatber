@@ -8,6 +8,7 @@
     [opened]="(isHandset$ | async) === false"
   >
     <mat-toolbar><span class="logo">hatber</span></mat-toolbar>
+    <mat-divider></mat-divider>
     <mat-nav-list>
       <a mat-list-item [routerLinkActive]="['active']" routerLink="/overview"
         >Обзор</a
@@ -15,8 +16,9 @@
       <a mat-list-item [routerLinkActive]="['active']" routerLink="/overview1"
         >Заказы</a
       >
-      <a mat-list-item [routerLinkActive]="['active']" routerLink="/overview2"
-        >Прайс</a
+
+      <a mat-list-item [routerLinkActive]="['active']" routerLink="/performers"
+        >Сотрудники</a
       >
     </mat-nav-list>
   </mat-sidenav>
@@ -32,7 +34,7 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span *ngIf="isHandset$ | async">hatber</span>
-      <h2 class="mat-h1">Dashboard</h2>
+      <h2 class="mat-h1">servbit</h2>
       <span class="spacer"></span>
       <button mat-icon-button>
         <mat-icon [matMenuTriggerFor]="menu" aria-label="Logout"
@@ -45,8 +47,5 @@
     </mat-toolbar>
     <!-- Add Content Here -->
     <router-outlet></router-outlet>
-    <footer>
-      <div>Aksoff 2020</div>
-    </footer>
   </mat-sidenav-content>
 </mat-sidenav-container>

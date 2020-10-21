@@ -17,6 +17,7 @@ import { SiteLayoutComponent } from './shared/layouts/site-layout/site-layout.co
 import { OverviewPageComponent } from './overview-page/overview-page.component'
 import { MatGridListModule } from '@angular/material/grid-list'
 import { MatCardModule } from '@angular/material/card'
+import { MatTableModule } from '@angular/material/table'
 import { MatMenuModule } from '@angular/material/menu'
 import { RegisterPageComponent } from './register-page/register-page.component'
 import { MatInputModule } from '@angular/material/input'
@@ -26,6 +27,7 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { TokenInterceptor } from './shared/classes/token.interceptor'
+import { PerformersPageComponent } from './performers-page/performers-page.component'
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { TokenInterceptor } from './shared/classes/token.interceptor'
     AuthLayoutComponent,
     SiteLayoutComponent,
     OverviewPageComponent,
-    RegisterPageComponent
+    RegisterPageComponent,
+    PerformersPageComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +52,7 @@ import { TokenInterceptor } from './shared/classes/token.interceptor'
     MatListModule,
     MatGridListModule,
     MatCardModule,
+    MatTableModule,
     MatMenuModule,
     MatInputModule,
     MatSelectModule,
