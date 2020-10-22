@@ -21,6 +21,7 @@ import { MatTableModule } from '@angular/material/table'
 import { MatMenuModule } from '@angular/material/menu'
 import { RegisterPageComponent } from './register-page/register-page.component'
 import { MatInputModule } from '@angular/material/input'
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { MatSelectModule } from '@angular/material/select'
 import { MatRadioModule } from '@angular/material/radio'
 import { ReactiveFormsModule } from '@angular/forms'
@@ -28,6 +29,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { TokenInterceptor } from './shared/classes/token.interceptor'
 import { PerformersPageComponent } from './performers-page/performers-page.component'
+import { PerformersFormComponent } from './performers-page/performers-form/performers-form.component'
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { PerformersPageComponent } from './performers-page/performers-page.compo
     SiteLayoutComponent,
     OverviewPageComponent,
     RegisterPageComponent,
-    PerformersPageComponent
+    PerformersPageComponent,
+    PerformersFormComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +58,7 @@ import { PerformersPageComponent } from './performers-page/performers-page.compo
     MatTableModule,
     MatMenuModule,
     MatInputModule,
+    MatProgressSpinnerModule,
     MatSelectModule,
     MatRadioModule,
     MatSnackBarModule,

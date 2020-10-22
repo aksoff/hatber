@@ -1,6 +1,23 @@
 <div class="grid-container">
-  <h1 class="mat-h1">Сотрудники</h1>
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
+  <mat-toolbar>
+    <h1 class="mat-h1">Сотрудники</h1>
+    <span class="spacer"></span>
+    <button
+      mat-raised-button
+      color="accent"
+      aria-label="Добавить сотрудника"
+      routerLink="/performers/new"
+    >
+      <mat-icon>add</mat-icon>
+      Добавить
+    </button>
+  </mat-toolbar>
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    class="mat-elevation-z1"
+    *ngIf="spinner; else loader"
+  >
     <!--- Note that these columns can be defined in any order.
 The actual rendered columns are set as a property on the row definition" -->
 
@@ -15,11 +32,6 @@ The actual rendered columns are set as a property on the row definition" -->
       <td mat-cell *matCellDef="let element">{{ element.name }}</td>
     </ng-container>
 
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="symbol">
-      <th mat-header-cell *matHeaderCellDef>Symbol</th>
-      <td mat-cell *matCellDef="let element">{{ element.symbol }}</td>
-    </ng-container>
     <!-- Action Column -->
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef>Action</th>
@@ -33,4 +45,5 @@ The actual rendered columns are set as a property on the row definition" -->
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
+  <ng-template #loader><mat-spinner></mat-spinner></ng-template>
 </div>

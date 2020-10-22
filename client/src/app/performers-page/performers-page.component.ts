@@ -1,15 +1,7 @@
 import { Component, OnInit } from '@angular/core'
-
-export interface Performer {
-  name: string
-  symbol: string
-}
-
-const PERFORMER_DATA: Performer[] = [
-  { name: 'Bilichenko', symbol: 'B' },
-  { name: 'Shcherbakov', symbol: 'S' },
-  { name: 'Popoff', symbol: 'P' }
-]
+import { Observable } from 'rxjs'
+import { Performer } from '../shared/services/interfaces'
+import { PerformersService } from '../shared/services/performers.service'
 
 @Component({
   selector: 'app-performers-page',
@@ -17,10 +9,13 @@ const PERFORMER_DATA: Performer[] = [
   styleUrls: ['./performers-page.component.scss']
 })
 export class PerformersPageComponent implements OnInit {
-  displayedColumns: string[] = ['Idx', 'name', 'symbol', 'action']
-  dataSource = PERFORMER_DATA
+  displayedColumns: string[] = ['Idx', 'name', 'action']
+  dataSource: Observable<Performer[]>
+  spinner = false
+  constructor(private performersService: PerformersService) {}
 
-  constructor() {}
-
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.dataSource = this.performersService.fetch()
+    this.spinner = true
+  }
 }
