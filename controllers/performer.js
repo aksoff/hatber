@@ -2,7 +2,12 @@ const Performer = require('../models/Performer')
 const errorHandler = require('../utils/errorHandler')
 
 module.exports.getAll = async function (req, res) {
-  res.status(200).json({ message: `performers` })
+  try {
+    const performers = await Performer.find({ user: req.user.id })
+    res.status(200).json(performers)
+  } catch (e) {
+    errorHandler(res, e)
+  }
 }
 
 module.exports.create = async function (req, res) {
