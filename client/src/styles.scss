@@ -8,3 +8,31 @@ body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
+
+.container {
+  margin: 20px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.col {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.col:last-child {
+  margin-right: 0;
+}
+
+.width100 {
+  width: 100%;
+}
+.width50 {
+  width: 50%;
+}
+.width30 {
+  width: 30%;
+}

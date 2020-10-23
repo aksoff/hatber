@@ -11,13 +11,6 @@ import { MaterialService } from '../shared/services/material.service'
   styleUrls: ['./login-page.component.scss']
 })
 export class LoginPageComponent implements OnInit, OnDestroy {
-  loginForm = this.formBuilder.group({
-    email: [null, [Validators.required, Validators.email]],
-    password: [null, [Validators.required, Validators.minLength(5)]]
-  })
-
-  aSub: Subscription
-
   constructor(
     private formBuilder: FormBuilder,
     private auth: AuthService,
@@ -25,6 +18,13 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private materialService: MaterialService
   ) {}
+
+  loginForm = this.formBuilder.group({
+    email: [null, [Validators.required, Validators.email]],
+    password: [null, [Validators.required, Validators.minLength(5)]]
+  })
+
+  aSub: Subscription
 
   ngOnInit() {
     this.route.queryParams.subscribe((params: Params) => {

@@ -1,1 +1,40 @@
-<p>performers-form works!</p>
+<div class="container">
+  <h1><a routerLink="/performers">Сотрудники</a></h1>
+  <form [formGroup]="performerForm" (ngSubmit)="onSubmit()">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title> Новый сотрудник </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="width50">
+              <mat-label>Имя сотрудника</mat-label>
+              <input formControlName="name" matInput type="text" />
+              <mat-error
+                *ngIf="
+                  performerForm.get('name').invalid &&
+                  performerForm.get('name').touched
+                "
+              >
+                <span *ngIf="performerForm.get('name').errors['required']"
+                  >Имя не должно быть пустым</span
+                >
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="performerForm.invalid || performerForm.disabled"
+        >
+          Сохранить
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>

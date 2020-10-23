@@ -10,4 +10,8 @@ export class PerformersService {
   fetch(): Observable<Performer[]> {
     return this.http.get<Performer[]>('/api/performer')
   }
+
+  create(performer: Performer): Observable<Performer> {
+    return this.http.post<Performer>('/api/performer', performer)
+  }
 }
