@@ -10,6 +10,17 @@ module.exports.getAll = async function (req, res) {
   }
 }
 
+module.exports.getById = async function (req, res) {
+  try {
+    const performer = await Performer.findById({
+      _id: req.params.id
+    })
+    res.status(200).json(performer)
+  } catch (e) {
+    errorHandler(res, e)
+  }
+}
+
 module.exports.create = async function (req, res) {
   const performer = new Performer({
     name: req.body.name
@@ -21,5 +32,20 @@ module.exports.create = async function (req, res) {
     errorHandler(res, e)
   }
 }
-module.exports.update = async (req, res) => {}
+module.exports.update = async (req, res) => {
+  const updated = {
+    name: req.body.name
+  }
+  console.log(updated, '--> updated')
+  try {
+    const performer = await Performer.findOneAndUpdate(
+      { _id: req.params.id },
+      { $set: { name: req.body.name } },
+      { new: true }
+    )
+    res.status(200).json(performer)
+  } catch (e) {
+    errorHandler(res, e)
+  }
+}
 module.exports.remove = async function (req, res) {}

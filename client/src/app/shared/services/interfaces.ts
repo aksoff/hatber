@@ -5,5 +5,6 @@ export interface User {
 
 export interface Performer {
   name: string
-  code?: string
+  label?: string
+  _id?: string
 }
