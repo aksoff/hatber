@@ -75,7 +75,7 @@ export class PerformersFormComponent implements OnInit {
 
       obs$ = this.performerService.update(
         this.performer._id,
-        this.performerForm.value.name
+        this.performerForm.value
       )
     }
 
@@ -83,12 +83,17 @@ export class PerformersFormComponent implements OnInit {
       (performer) => {
         this.performer = performer
         this.materialService.openSnackBar('Изменения сохранены')
-        this.performerForm.enable()
       },
       (error) => {
         this.materialService.openSnackBar(error.error.message)
         this.performerForm.enable()
+      },
+      () => {
+        this.performerForm.enable()
+        this.router.navigate(['/performers'])
       }
     )
   }
+
+  delete() {}
 }

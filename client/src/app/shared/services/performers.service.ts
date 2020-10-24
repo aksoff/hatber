@@ -19,11 +19,11 @@ export class PerformersService {
     return this.http.post<Performer>('/api/performer', performer)
   }
 
-  update(id: string, name: string): Observable<Performer> {
-    const data = new FormData()
-    data.append('name', name)
-    console.log(data, ' - data')
+  update(id: string, performer: Performer): Observable<Performer> {
+    return this.http.patch<Performer>(`/api/performer/${id}`, performer)
+  }
 
-    return this.http.patch<Performer>(`/api/performer/${id}`, data)
+  delete(id: string) {
+    return this.http.delete(`/api/performer/${id}`)
   }
 }

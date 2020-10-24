@@ -33,14 +33,13 @@ module.exports.create = async function (req, res) {
   }
 }
 module.exports.update = async (req, res) => {
-  const updated = {
-    name: req.body.name
-  }
-  console.log(updated, '--> updated')
   try {
+    const updated = {
+      name: req.body.name
+    }
     const performer = await Performer.findOneAndUpdate(
       { _id: req.params.id },
-      { $set: { name: req.body.name } },
+      { $set: updated },
       { new: true }
     )
     res.status(200).json(performer)
@@ -48,4 +47,11 @@ module.exports.update = async (req, res) => {
     errorHandler(res, e)
   }
 }
-module.exports.remove = async function (req, res) {}
+module.exports.remove = async function (req, res) {
+  try {
+    const performer = await Performer.deleteOne({ _id: req.params.id })
+    res.status(200).json(performer)
+  } catch (e) {
+    errorHandler(res, e)
+  }
+}
