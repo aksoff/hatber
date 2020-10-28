@@ -1,9 +1,11 @@
 <div class="container">
-  <h1><a routerLink="/performers">Сотрудники</a></h1>
+  <h2><a routerLink="/performers">Сотрудники</a></h2>
   <form [formGroup]="performerForm" (ngSubmit)="onSubmit()">
     <mat-card>
       <mat-card-header>
-        <mat-card-title> Новый сотрудник </mat-card-title>
+        <mat-card-title>
+          {{ isNew ? 'Новый сотрудник' : 'Сотрудник' }}
+        </mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <div class="row">
@@ -33,6 +35,15 @@
           [disabled]="performerForm.invalid || performerForm.disabled"
         >
           Сохранить
+        </button>
+        <button
+          mat-raised-button
+          color="warn"
+          type="button"
+          [disabled]="performerForm.invalid || performerForm.disabled"
+          *ngIf="!isNew"
+        >
+          Удалить
         </button>
       </mat-card-actions>
     </mat-card>
