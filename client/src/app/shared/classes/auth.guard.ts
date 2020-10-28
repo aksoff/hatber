@@ -18,8 +18,6 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> {
-    console.log(this.auth.isAuthenticated())
-
     if (this.auth.isAuthenticated()) {
       console.log('guard: Authenticated')
       return of(true)

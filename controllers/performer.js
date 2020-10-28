@@ -49,8 +49,8 @@ module.exports.update = async (req, res) => {
 }
 module.exports.remove = async function (req, res) {
   try {
-    const performer = await Performer.deleteOne({ _id: req.params.id })
-    res.status(200).json(performer)
+    await Performer.remove({ _id: req.params.id })
+    res.status(200).json({ message: 'Сотрудник удален' })
   } catch (e) {
     errorHandler(res, e)
   }

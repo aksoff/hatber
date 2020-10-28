@@ -34,10 +34,8 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    console.log(!!this.token, ' isAuth..')
-
-    //return !!this.token
-    return !!localStorage.getItem('auth-token')
+    return !!this.token
+    //return !!localStorage.getItem('auth-token')
   }
 
   logout() {

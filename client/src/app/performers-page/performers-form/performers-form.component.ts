@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms'
 import { ActivatedRoute, Params, Router } from '@angular/router'
 import { of } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
-import { Performer } from 'src/app/shared/services/interfaces'
+import { Performer, Message } from 'src/app/shared/services/interfaces'
 import { MaterialService } from 'src/app/shared/services/material.service'
 import { PerformersService } from 'src/app/shared/services/performers.service'
 
@@ -73,25 +73,34 @@ export class PerformersFormComponent implements OnInit {
         this.performer._id,
         this.performerForm.value
       )
+      obs$.subscribe(
+        (performer) => {
+          this.performer = performer
+          this.materialService.openSnackBar('Изменения сохранены')
+        },
+        (error) => {
+          this.materialService.openSnackBar(error.error.message)
+          this.performerForm.enable()
+        },
+        () => {
+          this.performerForm.enable()
+          this.router.navigate(['/performers'])
+        }
+      )
     }
-
-    obs$.subscribe(
-      (performer) => {
-        this.performer = performer
-        this.materialService.openSnackBar('Изменения сохранены')
-      },
-      (error) => {
-        this.materialService.openSnackBar(error.error.message)
-        this.performerForm.enable()
-      },
-      () => {
-        this.performerForm.enable()
-        this.router.navigate(['/performers'])
-      }
-    )
   }
 
   delete() {
-    console.log('delete performer')
+    const decision = window.confirm(
+      `Вы действительно хотите удалить сотрудника "${this.performer.name}"?`
+    )
+
+    if (decision) {
+      this.performerService.delete(this.performer._id).subscribe(
+        (res) => this.materialService.openSnackBar(res.message),
+        (error) => this.materialService.openSnackBar(error.error.message),
+        () => this.router.navigate(['/performers'])
+      )
+    }
   }
 }

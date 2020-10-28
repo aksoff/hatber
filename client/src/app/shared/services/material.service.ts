@@ -4,6 +4,7 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition
 } from '@angular/material/snack-bar'
+import { Message } from './interfaces'
 
 @Injectable({
   providedIn: 'root'

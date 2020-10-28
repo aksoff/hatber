@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
-import { Performer } from './interfaces'
+import { Message, Performer } from './interfaces'
 
 @Injectable({ providedIn: 'root' })
 export class PerformersService {
@@ -23,7 +23,7 @@ export class PerformersService {
     return this.http.patch<Performer>(`/api/performer/${id}`, performer)
   }
 
-  delete(id: string) {
-    return this.http.delete(`/api/performer/${id}`)
+  delete(id: string): Observable<Message> {
+    return this.http.delete<Message>(`/api/performer/${id}`)
   }
 }

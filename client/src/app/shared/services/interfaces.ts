@@ -8,3 +8,7 @@ export interface Performer {
   label?: string
   _id?: string
 }
+
+export interface Message {
+  message: string
+}
