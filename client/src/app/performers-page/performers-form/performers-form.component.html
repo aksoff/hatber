@@ -42,6 +42,7 @@
           type="button"
           [disabled]="performerForm.invalid || performerForm.disabled"
           *ngIf="!isNew"
+          (click)="delete()"
         >
           Удалить
         </button>

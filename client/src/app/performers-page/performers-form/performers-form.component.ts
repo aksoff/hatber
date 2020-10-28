@@ -56,8 +56,6 @@ export class PerformersFormComponent implements OnInit {
     this.performerForm.disable()
     if (this.isNew) {
       // Create
-      console.log('creates')
-
       obs$ = this.performerService.create(this.performerForm.value).subscribe(
         (performer) => {
           this.router.navigate(['/performers'])
@@ -71,8 +69,6 @@ export class PerformersFormComponent implements OnInit {
       )
     } else {
       // Update
-      console.log('update:', this.performerForm.value.name)
-
       obs$ = this.performerService.update(
         this.performer._id,
         this.performerForm.value
@@ -95,5 +91,7 @@ export class PerformersFormComponent implements OnInit {
     )
   }
 
-  delete() {}
+  delete() {
+    console.log('delete performer')
+  }
 }
