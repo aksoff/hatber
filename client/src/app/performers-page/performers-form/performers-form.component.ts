@@ -24,8 +24,9 @@ export class PerformersFormComponent implements OnInit {
     name: [null, [Validators.required, Validators.minLength(2)]]
   })
 
-  isNew = true
   performer: Performer
+  isNew = true
+  isLoading = true
 
   ngOnInit(): void {
     this.performerForm.disable()
