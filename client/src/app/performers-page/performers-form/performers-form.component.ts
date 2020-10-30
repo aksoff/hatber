@@ -46,6 +46,7 @@ export class PerformersFormComponent implements OnInit {
             this.performer = performer
             this.performerForm.patchValue({ name: performer.name })
           }
+          this.isLoading = false
           this.performerForm.enable()
         },
         (error) => this.materialService.openSnackBar(error.error.message)

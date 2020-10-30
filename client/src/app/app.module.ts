@@ -29,7 +29,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { TokenInterceptor } from './shared/classes/token.interceptor'
 import { PerformersPageComponent } from './performers-page/performers-page.component'
-import { PerformersFormComponent } from './performers-page/performers-form/performers-form.component'
+import { PerformersFormComponent } from './performers-page/performers-form/performers-form.component';
+import { LoaderComponent } from './shared/components/loader/loader.component'
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { PerformersFormComponent } from './performers-page/performers-form/perfo
     OverviewPageComponent,
     RegisterPageComponent,
     PerformersPageComponent,
-    PerformersFormComponent
+    PerformersFormComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
