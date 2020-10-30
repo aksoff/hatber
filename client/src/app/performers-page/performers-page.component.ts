@@ -16,9 +16,6 @@ export class PerformersPageComponent implements OnInit {
   constructor(private performersService: PerformersService) {}
 
   ngOnInit(): void {
-    // this.dataSource = this.performersService.fetch()
-    // this.spinner = true
-
     this.performersService.fetch().subscribe(
       (data) => {
         this.spinner = false
