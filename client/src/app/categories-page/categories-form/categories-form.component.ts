@@ -3,21 +3,21 @@ import { FormBuilder, Validators } from '@angular/forms'
 import { ActivatedRoute, Params, Router } from '@angular/router'
 import { of } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
-import { Performer, Message } from 'src/app/shared/services/interfaces'
+import { CategoriesService } from 'src/app/shared/services/categories.service'
+import { Category } from 'src/app/shared/services/interfaces'
 import { MaterialService } from 'src/app/shared/services/material.service'
-import { PerformersService } from 'src/app/shared/services/performers.service'
 
 @Component({
-  selector: 'app-performers-form',
-  templateUrl: './performers-form.component.html',
-  styleUrls: ['./performers-form.component.scss']
+  selector: 'app-categories-form',
+  templateUrl: './categories-form.component.html',
+  styleUrls: ['./categories-form.component.scss']
 })
-export class PerformersFormComponent implements OnInit {
-  performerForm = this.formBuilder.group({
+export class CategoriesFormComponent implements OnInit {
+  categoryForm = this.formBuilder.group({
     name: [null, [Validators.required, Validators.minLength(2)]]
   })
 
-  performer: Performer
+  category: Category
   isNew = true
   isLoading = true
 
@@ -26,29 +26,29 @@ export class PerformersFormComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private materialService: MaterialService,
-    private performerService: PerformersService
+    private categoryService: CategoriesService
   ) {}
 
   ngOnInit(): void {
-    this.performerForm.disable()
+    this.categoryForm.disable()
     this.route.params
       .pipe(
         switchMap((params: Params) => {
           if (params['id']) {
             this.isNew = false
-            return this.performerService.getById(params['id'])
+            return this.categoryService.getById(params['id'])
           }
           return of(null)
         })
       )
       .subscribe(
-        (performer: Performer) => {
-          if (performer) {
-            this.performer = performer
-            this.performerForm.patchValue({ name: performer.name })
+        (category: Category) => {
+          if (category) {
+            this.category = category
+            this.categoryForm.patchValue({ name: category.name })
           }
           this.isLoading = false
-          this.performerForm.enable()
+          this.categoryForm.enable()
         },
         (error) => this.materialService.openSnackBar(error.error.message)
       )
@@ -56,38 +56,38 @@ export class PerformersFormComponent implements OnInit {
 
   onSubmit() {
     let obs$
-    this.performerForm.disable()
+    this.categoryForm.disable()
     if (this.isNew) {
       // Create
-      obs$ = this.performerService.create(this.performerForm.value).subscribe(
+      obs$ = this.categoryService.create(this.categoryForm.value).subscribe(
         (performer) => {
-          this.router.navigate(['/performers'])
+          this.router.navigate(['/categories'])
         },
         (error) => {
           console.log(error)
         },
         () => {
-          this.performerForm.enable()
+          this.categoryForm.enable()
         }
       )
     } else {
       // Update
-      obs$ = this.performerService.update(
-        this.performer._id,
-        this.performerForm.value
+      obs$ = this.categoryService.update(
+        this.category._id,
+        this.categoryForm.value
       )
       obs$.subscribe(
-        (performer) => {
-          this.performer = performer
+        (category) => {
+          this.category = category
           this.materialService.openSnackBar('Изменения сохранены')
         },
         (error) => {
           this.materialService.openSnackBar(error.error.message)
-          this.performerForm.enable()
+          this.categoryForm.enable()
         },
         () => {
-          this.performerForm.enable()
-          this.router.navigate(['/performers'])
+          this.categoryForm.enable()
+          this.router.navigate(['/categories'])
         }
       )
     }
@@ -95,14 +95,14 @@ export class PerformersFormComponent implements OnInit {
 
   delete() {
     const decision = window.confirm(
-      `Вы действительно хотите удалить сотрудника "${this.performer.name}"?`
+      `Вы действительно хотите удалить категорию "${this.category.name}"?`
     )
 
     if (decision) {
-      this.performerService.delete(this.performer._id).subscribe(
+      this.categoryService.delete(this.category._id).subscribe(
         (res) => this.materialService.openSnackBar(res.message),
         (error) => this.materialService.openSnackBar(error.error.message),
-        () => this.router.navigate(['/performers'])
+        () => this.router.navigate(['/categories'])
       )
     }
   }

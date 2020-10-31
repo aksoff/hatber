@@ -1,0 +1,53 @@
+<div class="container">
+  <h2>Категории</h2>
+  <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          {{ isNew ? 'Новая категория' : 'Категория' }}
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content *ngIf="!isLoading; else loading">
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="width50">
+              <mat-label>Название категории</mat-label>
+              <input formControlName="name" matInput type="text" />
+              <mat-error
+                *ngIf="
+                  categoryForm.get('name').invalid &&
+                  categoryForm.get('name').touched
+                "
+              >
+                <span *ngIf="categoryForm.get('name').errors['required']"
+                  >Название не должно быть пустым</span
+                >
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="categoryForm.invalid || categoryForm.disabled"
+        >
+          Сохранить
+        </button>
+        <button
+          mat-raised-button
+          color="warn"
+          type="button"
+          [disabled]="categoryForm.invalid || categoryForm.disabled"
+          *ngIf="!isNew"
+          (click)="delete()"
+        >
+          Удалить
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+  <ng-template #loading><app-loader></app-loader></ng-template>
+</div>

@@ -1,0 +1,16 @@
+<div class="container">
+  <h2>Категории</h2>
+  <mat-card>
+    <mat-card-content *ngIf="!isLoading; else loader">
+      <mat-action-list>
+        <mat-list-item
+          *ngFor="let category of categories"
+          [routerLink]="['/categories', category._id]"
+        >
+          {{ category.name }}
+        </mat-list-item>
+      </mat-action-list>
+    </mat-card-content>
+  </mat-card>
+</div>
+<ng-template #loader><app-loader></app-loader></ng-template>

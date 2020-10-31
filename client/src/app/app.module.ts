@@ -30,7 +30,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { TokenInterceptor } from './shared/classes/token.interceptor'
 import { PerformersPageComponent } from './performers-page/performers-page.component'
 import { PerformersFormComponent } from './performers-page/performers-form/performers-form.component';
-import { LoaderComponent } from './shared/components/loader/loader.component'
+import { LoaderComponent } from './shared/components/loader/loader.component';
+import { CategoriesPageComponent } from './categories-page/categories-page.component';
+import { CategoriesFormComponent } from './categories-page/categories-form/categories-form.component'
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { LoaderComponent } from './shared/components/loader/loader.component'
     RegisterPageComponent,
     PerformersPageComponent,
     PerformersFormComponent,
-    LoaderComponent
+    LoaderComponent,
+    CategoriesPageComponent,
+    CategoriesFormComponent
   ],
   imports: [
     BrowserModule,

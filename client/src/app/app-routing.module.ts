@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
+import { CategoriesFormComponent } from './categories-page/categories-form/categories-form.component'
+import { CategoriesPageComponent } from './categories-page/categories-page.component'
 import { LoginPageComponent } from './login-page/login-page.component'
 import { OverviewPageComponent } from './overview-page/overview-page.component'
 import { PerformersFormComponent } from './performers-page/performers-form/performers-form.component'
@@ -25,6 +27,8 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: 'overview', component: OverviewPageComponent },
+      { path: 'categories', component: CategoriesPageComponent },
+      { path: 'categories/:id', component: CategoriesFormComponent },
       { path: 'performers', component: PerformersPageComponent },
       { path: 'performers/new', component: PerformersFormComponent },
       { path: 'performers/:id', component: PerformersFormComponent }
