@@ -1,4 +1,5 @@
-const Category = require('../models/Category')
+const Position = require('../models/Position')
+const Category = require('../models/Position')
 const errorHandler = require('../utils/errorHandler')
 
 module.exports.getAll = async function (req, res) {
@@ -8,8 +9,9 @@ module.exports.getAll = async function (req, res) {
 }
 
 module.exports.create = async function (req, res) {
-  const category = new Category({
+  const position = new Position({
     name: req.body.name,
+    category: req.body.category._id,
     user: req.user.id
   })
   try {
