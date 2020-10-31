@@ -38,7 +38,7 @@ module.exports.update = async function (req, res) {
     const updated = {
       name: req.body.name
     }
-    const performer = await Category.findOneAndUpdate(
+    const category = await Category.findOneAndUpdate(
       { _id: req.params.id },
       { $set: updated },
       { new: true }
