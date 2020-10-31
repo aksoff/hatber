@@ -22,7 +22,6 @@ module.exports.getById = async function (req, res) {
 }
 
 module.exports.create = async function (req, res) {
-  console.log(req.user)
   const performer = new Performer({
     name: req.body.name,
     user: req.user.id
