@@ -9,7 +9,6 @@ module.exports.getAll = async function (req, res) {
     errorHandler(res, e)
   }
 }
-
 module.exports.getById = async function (req, res) {
   try {
     const category = await Category.findById({
