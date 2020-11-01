@@ -1,5 +1,10 @@
 <div class="container">
-  <h2><a routerLink="/performers">Сотрудники</a></h2>
+  <div class="toolbar toolbar-row toolbar-single-row">
+    <button mat-icon-button aria-label="Back" [routerLink]="'/performers'">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h1>Сотрудники</h1>
+  </div>
   <form [formGroup]="performerForm" (ngSubmit)="onSubmit()">
     <mat-card>
       <mat-card-header>
