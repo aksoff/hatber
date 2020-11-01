@@ -3,15 +3,13 @@
     <button mat-icon-button aria-label="Back" [routerLink]="'/categories'">
       <mat-icon>arrow_back</mat-icon>
     </button>
-    <h1>Категории</h1>
+    <h1>{{ isNew ? 'Новая категория' : 'Категория' }}</h1>
   </div>
 
   <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
     <mat-card>
       <mat-card-header>
-        <mat-card-title>
-          {{ isNew ? 'Новая категория' : 'Категория' }}
-        </mat-card-title>
+        <mat-card-title> </mat-card-title>
       </mat-card-header>
       <mat-card-content *ngIf="!isLoading; else loading">
         <div class="row">
@@ -56,4 +54,5 @@
     </mat-card>
   </form>
   <ng-template #loading><app-loader></app-loader></ng-template>
+  <app-positions-page *ngIf="!isNew"></app-positions-page>
 </div>
