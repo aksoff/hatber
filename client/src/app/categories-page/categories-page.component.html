@@ -1,5 +1,17 @@
 <div class="container">
-  <h2>Категории</h2>
+  <div class="page-header toolbar toolbar-row toolbar-single-row">
+    <h1>Категории</h1>
+    <div class="spacer"></div>
+    <button
+      mat-raised-button
+      color="accent"
+      aria-label="Добавить категорию"
+      routerLink="/categories/new"
+    >
+      <mat-icon>add</mat-icon>
+      Добавить
+    </button>
+  </div>
   <mat-card>
     <mat-card-content *ngIf="!isLoading; else loader">
       <mat-action-list>

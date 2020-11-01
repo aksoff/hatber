@@ -28,6 +28,7 @@ const routes: Routes = [
     children: [
       { path: 'overview', component: OverviewPageComponent },
       { path: 'categories', component: CategoriesPageComponent },
+      { path: 'categories/new', component: CategoriesFormComponent },
       { path: 'categories/:id', component: CategoriesFormComponent },
       { path: 'performers', component: PerformersPageComponent },
       { path: 'performers/new', component: PerformersFormComponent },

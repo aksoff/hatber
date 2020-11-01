@@ -1,6 +1,6 @@
 <div class="grid-container">
-  <mat-toolbar>
-    <h1 class="mat-h1">Сотрудники</h1>
+  <div class="toolbar toolbar-row toolbar-single-row">
+    <h1>Сотрудники</h1>
     <span class="spacer"></span>
     <button
       mat-raised-button
@@ -11,7 +11,7 @@
       <mat-icon>add</mat-icon>
       Добавить
     </button>
-  </mat-toolbar>
+  </div>
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
     <!--- Note that these columns can be defined in any order.
 The actual rendered columns are set as a property on the row definition" -->

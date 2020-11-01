@@ -10,7 +10,7 @@ body {
 }
 
 .container {
-  margin: 20px;
+  margin: 0 20px;
 }
 
 .row {
@@ -40,4 +40,38 @@ body {
 }
 .width30 {
   width: 30%;
+}
+
+.grid-container {
+  margin: 20px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.toolbar-row,
+.toolbar-single-row {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  white-space: nowrap;
+}
+.toolbar-row,
+.toolbar-single-row {
+  height: 64px;
+}
+.toolbar {
+  color: rgba(0, 0, 0, 0.87);
+}
+.toolbar,
+.toolbar h1,
+toolbar h2,
+.toolbar h3,
+.toolbar h4,
+.toolbar h5,
+.toolbar h6 {
+  margin: 0;
 }
