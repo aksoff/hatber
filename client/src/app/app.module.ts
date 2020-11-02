@@ -24,15 +24,16 @@ import { MatInputModule } from '@angular/material/input'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { MatSelectModule } from '@angular/material/select'
 import { MatRadioModule } from '@angular/material/radio'
+import { MatDialogModule } from '@angular/material/dialog'
 import { ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { TokenInterceptor } from './shared/classes/token.interceptor'
 import { PerformersPageComponent } from './performers-page/performers-page.component'
-import { PerformersFormComponent } from './performers-page/performers-form/performers-form.component';
-import { LoaderComponent } from './shared/components/loader/loader.component';
-import { CategoriesPageComponent } from './categories-page/categories-page.component';
-import { CategoriesFormComponent } from './categories-page/categories-form/categories-form.component';
+import { PerformersFormComponent } from './performers-page/performers-form/performers-form.component'
+import { LoaderComponent } from './shared/components/loader/loader.component'
+import { CategoriesPageComponent } from './categories-page/categories-page.component'
+import { CategoriesFormComponent } from './categories-page/categories-form/categories-form.component'
 import { PositionsPageComponent } from './categories-page/categories-form/positions-page/positions-page.component'
 
 @NgModule({
@@ -66,6 +67,7 @@ import { PositionsPageComponent } from './categories-page/categories-form/positi
     MatTableModule,
     MatMenuModule,
     MatInputModule,
+    MatDialogModule,
     MatProgressSpinnerModule,
     MatSelectModule,
     MatRadioModule,

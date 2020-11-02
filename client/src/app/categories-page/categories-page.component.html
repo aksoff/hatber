@@ -12,7 +12,7 @@
       Добавить
     </button>
   </div>
-  <mat-card *ngIf="categories.length != 0; else emptyBlock">
+  <mat-card>
     <mat-card-content *ngIf="!isLoading; else loader">
       <mat-action-list>
         <mat-list-item
