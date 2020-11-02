@@ -34,7 +34,8 @@ import { PerformersFormComponent } from './performers-page/performers-form/perfo
 import { LoaderComponent } from './shared/components/loader/loader.component'
 import { CategoriesPageComponent } from './categories-page/categories-page.component'
 import { CategoriesFormComponent } from './categories-page/categories-form/categories-form.component'
-import { PositionsPageComponent } from './categories-page/categories-form/positions-page/positions-page.component'
+import { PositionsPageComponent } from './categories-page/categories-form/positions-page/positions-page.component';
+import { PositionsFormComponent } from './categories-page/categories-form/positions-page/positions-form/positions-form.component'
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { PositionsPageComponent } from './categories-page/categories-form/positi
     LoaderComponent,
     CategoriesPageComponent,
     CategoriesFormComponent,
-    PositionsPageComponent
+    PositionsPageComponent,
+    PositionsFormComponent
   ],
   imports: [
     BrowserModule,

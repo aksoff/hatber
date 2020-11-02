@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { MatDialog } from '@angular/material/dialog'
+import { PositionsFormComponent } from './positions-form/positions-form.component'
 
 export interface Position {
   name: string
@@ -24,15 +25,9 @@ export class PositionsPageComponent implements OnInit {
   ngOnInit(): void {}
 
   openForm() {
-    const formRef = this.positionsForm.open(PositionsFormDialog)
+    const formRef = this.positionsForm.open(PositionsFormComponent)
     formRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`)
     })
   }
 }
-
-@Component({
-  selector: 'app-positions-form',
-  templateUrl: './positions-form.component.html'
-})
-export class PositionsFormDialog {}
