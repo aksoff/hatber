@@ -4,7 +4,8 @@ const errorHandler = require('../utils/errorHandler')
 
 module.exports.getAll = async function (req, res) {
   try {
-    res.status(200).json({ message: `categories` })
+    const positions = await Position.find({ user: req.user.id })
+    res.status(200).json(positions)
   } catch {}
 }
 
@@ -15,8 +16,8 @@ module.exports.create = async function (req, res) {
     user: req.user.id
   })
   try {
-    await category.save
-    res.status(201).json(category)
+    await position.save
+    res.status(201).json(position)
   } catch (e) {
     errorHandler(res, e)
   }
