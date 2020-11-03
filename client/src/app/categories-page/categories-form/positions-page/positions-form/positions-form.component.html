@@ -1,7 +1,26 @@
-<h1 mat-dialog-title>Position</h1>
-<div mat-dialog-content>
-  This dialog showcases the title, close, content and actions elements.
-</div>
-<div mat-dialog-actions>
-  <button mat-button mat-dialog-close>Close</button>
-</div>
+<form [formGroup]="positionForm" (ngSubmit)="onSubmit()">
+  <h1 mat-dialog-title>Position</h1>
+  <div mat-dialog-contentq>
+    <mat-form-field>
+      <mat-label>Название позиции</mat-label>
+      <input formControlName="name" matInput type="text" />
+      <mat-error
+        *ngIf="
+          positionForm.get('name').invalid && positionForm.get('name').touched
+        "
+      >
+        <span *ngIf="positionForm.get('name').errors['required']"
+          >Название не должно быть пустым</span
+        >
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Стоимость</mat-label>
+      <input formControlName="cost" matInput type="number" />
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button type="submit" mat-dialog-close>Сохранить</button>
+    <button mat-button mat-dialog-close="no">Закрыть</button>
+  </div>
+</form>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, Input, OnInit } from '@angular/core'
 import { MatDialog } from '@angular/material/dialog'
 import { PositionsFormComponent } from './positions-form/positions-form.component'
 
@@ -13,6 +13,7 @@ export interface Position {
   styleUrls: ['./positions-page.component.scss']
 })
 export class PositionsPageComponent implements OnInit {
+  @Input('categoryId') categoryId: string
   positions: Position[] = [
     { name: 'Service 1', cost: 300 },
     { name: 'Service 2', cost: 400 },
@@ -25,9 +26,12 @@ export class PositionsPageComponent implements OnInit {
   ngOnInit(): void {}
 
   openForm() {
-    const formRef = this.positionsForm.open(PositionsFormComponent)
+    const formRef = this.positionsForm.open(PositionsFormComponent, {
+      data: { categoryId: this.categoryId }
+    })
     formRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`)
+      console.log(this.categoryId)
     })
   }
 }

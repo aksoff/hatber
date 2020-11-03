@@ -54,5 +54,8 @@
     </mat-card>
   </form>
   <ng-template #loading><app-loader></app-loader></ng-template>
-  <app-positions-page *ngIf="!isNew"></app-positions-page>
+  <app-positions-page
+    *ngIf="category?._id"
+    [categoryId]="category._id"
+  ></app-positions-page>
 </div>
