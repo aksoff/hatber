@@ -12,11 +12,12 @@ module.exports.getAll = async function (req, res) {
 module.exports.create = async function (req, res) {
   const position = new Position({
     name: req.body.name,
-    category: req.body.category._id,
+    cost: req.body.cost,
+    category: req.body.category,
     user: req.user.id
   })
   try {
-    await position.save
+    await position.save()
     res.status(201).json(position)
   } catch (e) {
     errorHandler(res, e)

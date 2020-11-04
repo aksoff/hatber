@@ -7,6 +7,7 @@ const passport = require('passport')
 const authRoutes = require('./routes/auth')
 const categoryRoutes = require('./routes/category')
 const performerRoutes = require('./routes/performer')
+const positionRoutes = require('./routes/position')
 const keys = require('./config/keys')
 
 const app = express()
@@ -31,5 +32,6 @@ app.use(bodyParser.json())
 app.use('/api/auth', authRoutes)
 app.use('/api/category', categoryRoutes)
 app.use('/api/performer', performerRoutes)
+app.use('/api/position', positionRoutes)
 
 module.exports = app

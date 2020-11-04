@@ -1,6 +1,8 @@
 import { Component, Inject, Input, OnInit } from '@angular/core'
 import { FormBuilder, NgForm, Validators } from '@angular/forms'
 import { MAT_DIALOG_DATA } from '@angular/material/dialog'
+import { Position } from 'src/app/shared/services/interfaces'
+import { PositionsService } from 'src/app/shared/services/positions.service'
 
 export interface DialogData {
   categoryId: string
@@ -17,8 +19,11 @@ export class PositionsFormComponent implements OnInit {
     cost: [null]
   })
 
+  position: Position
+
   constructor(
     private formBuilder: FormBuilder,
+    private positionsService: PositionsService,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {}
 
@@ -26,8 +31,22 @@ export class PositionsFormComponent implements OnInit {
 
   onSubmit() {
     let obs$
-    console.log(this.positionForm.value)
+    this.position = {
+      name: this.positionForm.get('name').value,
+      cost: this.positionForm.get('cost').value,
+      category: this.data.categoryId
+    }
 
-    //obs$ =
+    obs$ = this.positionsService.create(this.position).subscribe(
+      (position) => {
+        console.log(position)
+      },
+      (error) => {
+        console.log(error)
+      },
+      () => {
+        this.positionForm.enable()
+      }
+    )
   }
 }

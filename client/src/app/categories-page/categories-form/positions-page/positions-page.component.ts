@@ -31,7 +31,6 @@ export class PositionsPageComponent implements OnInit {
     })
     formRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`)
-      console.log(this.categoryId)
     })
   }
 }
