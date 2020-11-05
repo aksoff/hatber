@@ -2,6 +2,7 @@ import { Component, Inject, Input, OnInit } from '@angular/core'
 import { FormBuilder, NgForm, Validators } from '@angular/forms'
 import { MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { Position } from 'src/app/shared/services/interfaces'
+import { MaterialService } from 'src/app/shared/services/material.service'
 import { PositionsService } from 'src/app/shared/services/positions.service'
 
 export interface DialogData {
@@ -24,12 +25,14 @@ export class PositionsFormComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private positionsService: PositionsService,
+    private materialService: MaterialService,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {}
 
   ngOnInit(): void {}
 
   onSubmit() {
+    this.positionForm.disable()
     let obs$
     this.position = {
       name: this.positionForm.get('name').value,
@@ -39,9 +42,12 @@ export class PositionsFormComponent implements OnInit {
 
     obs$ = this.positionsService.create(this.position).subscribe(
       (position) => {
-        console.log(position)
+        if (position) {
+          this.materialService.openSnackBar('Позиция добавлена')
+        }
       },
       (error) => {
+        this.materialService.openSnackBar(error.error.message)
         console.log(error)
       },
       () => {

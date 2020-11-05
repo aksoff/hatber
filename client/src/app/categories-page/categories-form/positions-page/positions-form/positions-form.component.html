@@ -20,7 +20,14 @@
     </mat-form-field>
   </div>
   <div mat-dialog-actions>
-    <button mat-button type="submit" mat-dialog-close>Сохранить</button>
-    <button mat-button mat-dialog-close="no">Закрыть</button>
+    <button
+      mat-button
+      type="submit"
+      [disabled]="!positionForm.valid"
+      mat-dialog-close="save"
+    >
+      Сохранить
+    </button>
+    <button mat-button mat-dialog-close="cancel">Закрыть</button>
   </div>
 </form>

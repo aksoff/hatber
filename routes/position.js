@@ -4,9 +4,9 @@ const passport = require('passport')
 const router = express.Router()
 
 router.get(
-  '/',
+  '/:categoryId',
   passport.authenticate('jwt', { session: false }),
-  controller.getAll
+  controller.getByCategoryId
 )
 router.post(
   '/',

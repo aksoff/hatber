@@ -48,6 +48,7 @@ module.exports.update = async (req, res) => {
     errorHandler(res, e)
   }
 }
+
 module.exports.remove = async function (req, res) {
   try {
     await Performer.remove({ _id: req.params.id })

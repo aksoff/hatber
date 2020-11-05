@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core'
 import { MatDialog } from '@angular/material/dialog'
+import { PositionsService } from 'src/app/shared/services/positions.service'
 import { PositionsFormComponent } from './positions-form/positions-form.component'
 
 export interface Position {
@@ -14,23 +15,42 @@ export interface Position {
 })
 export class PositionsPageComponent implements OnInit {
   @Input('categoryId') categoryId: string
-  positions: Position[] = [
-    { name: 'Service 1', cost: 300 },
-    { name: 'Service 2', cost: 400 },
-    { name: 'Service 3', cost: 500 }
-  ]
+  positions: Position[] = []
 
   displayedColumns = ['Idx', 'name', 'cost']
-  constructor(public positionsForm: MatDialog) {}
+  constructor(
+    public positionsForm: MatDialog,
+    private positionsService: PositionsService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.positionsService.fetch(this.categoryId).subscribe(
+      (positions) => {
+        this.positions = positions
+      },
+      (error) => {
+        console.log(error)
+      }
+    )
+  }
 
   openForm() {
     const formRef = this.positionsForm.open(PositionsFormComponent, {
       data: { categoryId: this.categoryId }
     })
     formRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`)
+      if (result != 'cancel') {
+        this.positionsService.fetch(this.categoryId).subscribe(
+          (positions) => {
+            this.positions = positions
+          },
+          (error) => {
+            console.log(error)
+          }
+        )
+      } else {
+        console.log('cancel dialog')
+      }
     })
   }
 }

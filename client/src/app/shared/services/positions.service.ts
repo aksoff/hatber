@@ -9,8 +9,8 @@ import { Position } from './interfaces'
 export class PositionsService {
   constructor(private http: HttpClient) {}
 
-  fetch(): Observable<Position[]> {
-    return this.http.get<Position[]>('/api/position')
+  fetch(categoryId: string): Observable<Position[]> {
+    return this.http.get<Position[]>(`/api/position/${categoryId}`)
   }
 
   create(position: Position): Observable<Position> {
