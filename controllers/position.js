@@ -29,6 +29,16 @@ module.exports.create = async function (req, res) {
 
 module.exports.update = async function (req, res) {
   try {
+    const updated = {
+      name: req.body.name,
+      cost: req.body.cost2
+    }
+    const performer = await Position.findOneAndUpdate(
+      { _id: req.params.id },
+      { $set: updated },
+      { new: true }
+    )
+    res.status(200).json(position)
   } catch (e) {
     errorHandler(res, e)
   }
@@ -36,6 +46,8 @@ module.exports.update = async function (req, res) {
 
 module.exports.remove = async function (req, res) {
   try {
+    await Position.remove({ _id: req.params.id })
+    res.status(200).json({ message: 'Позиция удалена' })
   } catch (e) {
     errorHandler(res, e)
   }
