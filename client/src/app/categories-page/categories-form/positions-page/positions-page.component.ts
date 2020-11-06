@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, Input, OnInit, ViewChild } from '@angular/core'
 import { MatDialog } from '@angular/material/dialog'
+import { MatTable } from '@angular/material/table'
 import { Position } from 'src/app/shared/services/interfaces'
 import { MaterialService } from 'src/app/shared/services/material.service'
 import { PositionsService } from 'src/app/shared/services/positions.service'
@@ -12,6 +13,7 @@ import { PositionsFormComponent } from './positions-form/positions-form.componen
 })
 export class PositionsPageComponent implements OnInit {
   @Input('categoryId') categoryId: string
+  @ViewChild(MatTable) table: MatTable<any>
   positions: Position[] = []
 
   displayedColumns = ['Idx', 'name', 'cost', 'action']
@@ -52,16 +54,19 @@ export class PositionsPageComponent implements OnInit {
     })
   }
 
-  remove(id) {
-    const decision = window.confirm(`Вы действительно хотите удалить позицию ?`)
+  remove(event: Event, position: Position) {
+    event.stopPropagation()
+    const decision = window.confirm(
+      `Вы действительно хотите удалить ${position.name} ?`
+    )
 
     if (decision) {
-      this.positionsService.delete(id).subscribe(
+      this.positionsService.delete(position._id).subscribe(
         (res) => {
-          const idx = this.positions.findIndex((p) => p._id == id)
-          this.positions.slice(idx, 1)
+          const idx = this.positions.findIndex((p) => p._id === position._id)
+          this.positions.splice(idx, 1)
           console.log(this.positions)
-
+          this.table.renderRows()
           this.materialService.openSnackBar(res.message)
         },
         (error) => this.materialService.openSnackBar(error.error.message)
