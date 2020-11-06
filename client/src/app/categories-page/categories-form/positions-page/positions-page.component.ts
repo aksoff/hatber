@@ -1,12 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core'
 import { MatDialog } from '@angular/material/dialog'
+import { Position } from 'src/app/shared/services/interfaces'
+import { MaterialService } from 'src/app/shared/services/material.service'
 import { PositionsService } from 'src/app/shared/services/positions.service'
 import { PositionsFormComponent } from './positions-form/positions-form.component'
-
-export interface Position {
-  name: string
-  cost: number
-}
 
 @Component({
   selector: 'app-positions-page',
@@ -17,10 +14,11 @@ export class PositionsPageComponent implements OnInit {
   @Input('categoryId') categoryId: string
   positions: Position[] = []
 
-  displayedColumns = ['Idx', 'name', 'cost']
+  displayedColumns = ['Idx', 'name', 'cost', 'action']
   constructor(
     public positionsForm: MatDialog,
-    private positionsService: PositionsService
+    private positionsService: PositionsService,
+    private materialService: MaterialService
   ) {}
 
   ngOnInit(): void {
@@ -52,5 +50,23 @@ export class PositionsPageComponent implements OnInit {
         console.log('cancel dialog')
       }
     })
+  }
+
+  remove(id) {
+    const decision = window.confirm(`Вы действительно хотите удалить позицию ?`)
+
+    if (decision) {
+      this.positionsService.delete(id).subscribe(
+        (res) => {
+          const idx = this.positions.findIndex((p) => p._id == id)
+          this.positions.slice(idx, 1)
+          console.log(this.positions)
+
+          this.materialService.openSnackBar(res.message)
+        },
+        (error) => this.materialService.openSnackBar(error.error.message)
+        //() => this.router.navigate(['/categories'])
+      )
+    }
   }
 }
