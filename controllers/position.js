@@ -31,9 +31,9 @@ module.exports.update = async function (req, res) {
   try {
     const updated = {
       name: req.body.name,
-      cost: req.body.cost2
+      cost: req.body.cost
     }
-    const performer = await Position.findOneAndUpdate(
+    const position = await Position.findOneAndUpdate(
       { _id: req.params.id },
       { $set: updated },
       { new: true }

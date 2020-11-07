@@ -54,6 +54,26 @@ export class PositionsPageComponent implements OnInit {
     })
   }
 
+  openForUpdate(position: Position) {
+    const formRef = this.positionsForm.open(PositionsFormComponent, {
+      data: { categoryId: this.categoryId, position }
+    })
+    formRef.afterClosed().subscribe((result) => {
+      if (result != 'cancel') {
+        this.positionsService.fetch(this.categoryId).subscribe(
+          (positions) => {
+            this.positions = positions
+          },
+          (error) => {
+            console.log(error)
+          }
+        )
+      } else {
+        console.log('cancel dialog')
+      }
+    })
+  }
+
   remove(event: Event, position: Position) {
     event.stopPropagation()
     const decision = window.confirm(

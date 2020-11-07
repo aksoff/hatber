@@ -7,6 +7,7 @@ import { PositionsService } from 'src/app/shared/services/positions.service'
 
 export interface DialogData {
   categoryId: string
+  position: Position
 }
 
 @Component({
@@ -22,6 +23,8 @@ export class PositionsFormComponent implements OnInit {
 
   position: Position
 
+  isNew = true
+
   constructor(
     private formBuilder: FormBuilder,
     private positionsService: PositionsService,
@@ -29,7 +32,13 @@ export class PositionsFormComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.data.position) {
+      this.isNew = false
+      this.positionForm.patchValue({ name: this.data.position.name })
+      this.positionForm.patchValue({ cost: this.data.position.cost })
+    }
+  }
 
   onSubmit() {
     this.positionForm.disable()
@@ -39,20 +48,39 @@ export class PositionsFormComponent implements OnInit {
       cost: this.positionForm.get('cost').value,
       category: this.data.categoryId
     }
-
-    obs$ = this.positionsService.create(this.position).subscribe(
-      (position) => {
-        if (position) {
-          this.materialService.openSnackBar('Позиция добавлена')
+    if (this.isNew) {
+      obs$ = this.positionsService.create(this.position).subscribe(
+        (position) => {
+          if (position) {
+            this.materialService.openSnackBar('Позиция добавлена')
+          }
+        },
+        (error) => {
+          this.materialService.openSnackBar(error.error.message)
+          console.log(error)
+        },
+        () => {
+          this.positionForm.enable()
         }
-      },
-      (error) => {
-        this.materialService.openSnackBar(error.error.message)
-        console.log(error)
-      },
-      () => {
-        this.positionForm.enable()
-      }
-    )
+      )
+    } else {
+      //Update position
+      this.positionsService
+        .update(this.data.position._id, this.position)
+        .subscribe(
+          (position) => {
+            if (position) {
+              this.materialService.openSnackBar('Позиция сохранена')
+            }
+          },
+          (error) => {
+            this.materialService.openSnackBar(error.error.message)
+            console.log(error)
+          },
+          () => {
+            this.positionForm.enable()
+          }
+        )
+    }
   }
 }
