@@ -70,7 +70,6 @@ export class PositionsPageComponent implements OnInit {
           this.materialService.openSnackBar(res.message)
         },
         (error) => this.materialService.openSnackBar(error.error.message)
-        //() => this.router.navigate(['/categories'])
       )
     }
   }
