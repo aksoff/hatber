@@ -49,6 +49,7 @@ export class PositionsFormComponent implements OnInit {
       category: this.data.categoryId
     }
     if (this.isNew) {
+      // FIX - obs$ - ?
       obs$ = this.positionsService.create(this.position).subscribe(
         (position) => {
           if (position) {
