@@ -52,6 +52,12 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
+<div class="center message" *ngIf="positions.length < 1 && !isLoading">
+  <span>Список пустой.</span>
+  <button mat-button color="primary" (click)="openForm()">
+    Добавить позицию
+  </button>
+</div>
 <div *ngIf="isLoading">
   <app-loader></app-loader>
 </div>

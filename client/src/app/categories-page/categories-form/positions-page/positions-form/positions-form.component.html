@@ -1,8 +1,8 @@
 <form [formGroup]="positionForm" (ngSubmit)="onSubmit()">
-  <h1 mat-dialog-title>Position</h1>
+  <h1 mat-dialog-title>{{ isNew ? 'Новая позиция' : 'Позиция' }}</h1>
   <div mat-dialog-contentq>
     <mat-form-field>
-      <mat-label>Название позиции</mat-label>
+      <mat-label>Наименование позиции</mat-label>
       <input formControlName="name" matInput type="text" />
       <mat-error
         *ngIf="
