@@ -14,9 +14,10 @@ import { PositionsFormComponent } from './positions-form/positions-form.componen
 export class PositionsPageComponent implements OnInit {
   @Input('categoryId') categoryId: string
   @ViewChild(MatTable) table: MatTable<any>
-  positions: Position[] = []
 
+  positions: Position[] = []
   displayedColumns = ['Idx', 'name', 'cost', 'action']
+  isLoading = true
   constructor(
     public positionsForm: MatDialog,
     private positionsService: PositionsService,
@@ -27,6 +28,7 @@ export class PositionsPageComponent implements OnInit {
     this.positionsService.fetch(this.categoryId).subscribe(
       (positions) => {
         this.positions = positions
+        this.isLoading = false
       },
       (error) => {
         console.log(error)
