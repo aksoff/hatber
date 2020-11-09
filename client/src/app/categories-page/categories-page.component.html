@@ -22,12 +22,16 @@
           {{ category.name }}
         </mat-list-item>
       </mat-action-list>
+      <div
+        class="center text-center"
+        *ngIf="categories.length < 1 && !isLoading"
+      >
+        <span>Нет записей. </span
+        ><button mat-button color="primary" [routerLink]="'/categories/new'">
+          Добавить категорию
+        </button>
+      </div>
     </mat-card-content>
   </mat-card>
-  <ng-template #emptyBlock>
-    <div class="center">
-      Нет записей. <a [routerLink]="'/categories/new'">Добавить</a>
-    </div>
-  </ng-template>
 </div>
 <ng-template #loader><app-loader></app-loader></ng-template>
