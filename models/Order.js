@@ -20,6 +20,13 @@ const orderSchema = new Schema({
       },
       cost: {
         type: Number
+      },
+      performer: {
+        ref: 'performers',
+        type: Schema.Types.ObjectId
+      },
+      salary: {
+        type: Number
       }
     }
   ],
