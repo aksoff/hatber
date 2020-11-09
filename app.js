@@ -8,6 +8,7 @@ const authRoutes = require('./routes/auth')
 const categoryRoutes = require('./routes/category')
 const performerRoutes = require('./routes/performer')
 const positionRoutes = require('./routes/position')
+const orderRoutes = require('./routes/order')
 const keys = require('./config/keys')
 
 const app = express()
@@ -33,5 +34,6 @@ app.use('/api/auth', authRoutes)
 app.use('/api/category', categoryRoutes)
 app.use('/api/performer', performerRoutes)
 app.use('/api/position', positionRoutes)
+app.use('/api/opder', orderRoutes)
 
 module.exports = app
