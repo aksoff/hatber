@@ -22,6 +22,21 @@ export interface Position {
   _id?: string
 }
 
+export interface OrderPosition {
+  name: string
+  cost: number
+  performer?: Performer
+  salary?: number
+}
+
+export interface Order {
+  date?: Date
+  order: number
+  positions: Array<OrderPosition>
+  user?: string
+  _id?: string
+}
+
 export interface Message {
   message: string
 }
