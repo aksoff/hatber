@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
+import { CategoriesService } from '../shared/services/categories.service'
 
 @Component({
   selector: 'app-order-page',
@@ -6,10 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./order-page.component.scss']
 })
 export class OrderPageComponent implements OnInit {
+  constructor(public categories: CategoriesService) {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
