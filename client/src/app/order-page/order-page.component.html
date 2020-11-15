@@ -4,7 +4,12 @@
     <span class="spacer"></span>
     <button mat-raised-button color="accent">Завершить заказ</button>
   </div>
-  <mat-card>
-    <mat-card-content> Positions list </mat-card-content>
-  </mat-card>
+  <section id="categories" class="card">
+    <mat-card
+      *ngFor="let category of categories"
+      (click)="selectCategory(category._id)"
+    >
+      <mat-card-content> {{ category.name }} </mat-card-content>
+    </mat-card>
+  </section>
 </div>
